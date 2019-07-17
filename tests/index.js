@@ -25,10 +25,10 @@ describe('Testing Crud', function() {
 
 describe('Testing Status', function() {
     it('should read status from a book', async function() {
-        const { author, name, status, year } = fixtureBook;
+        const { name, status } = fixtureBook;
 
         const response = JSON.parse(await books.readStatus(1));
 
-        assert.deepEqual(response, { author, name, status, year });
+        assert.deepEqual(response, { name, status });
     });
 });

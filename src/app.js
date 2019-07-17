@@ -1,5 +1,5 @@
 const express = require('express');
-const books = require('./books');
+const books = require('./controllers/books');
 
 var app = express();
 
