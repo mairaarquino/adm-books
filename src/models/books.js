@@ -47,4 +47,8 @@ function editBook(idNumber, name, author, year) {
     return Books.update({ name, author, year}, { where: { id: idNumber} }).then(() => {});
 }
 
-module.exports = { createBook, readBooks, editBook };
+function deleteBook(id) {
+    return Books.destroy({ where: { id: id } });
+}
+
+module.exports = { createBook, readBooks, editBook, deleteBook };

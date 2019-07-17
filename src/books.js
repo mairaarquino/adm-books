@@ -21,4 +21,9 @@ async function editBook(req, res) {
     res.status(200).send(await books.editBook(id, name, author, year));
 }
 
-module.exports = { createBook, readBooks, editBook };
+async function deleteBook(req, res) {
+    const id = req.query.id;
+
+    res.sendStatus(200).send(await books.deleteBook(id));
+}
+module.exports = { createBook, readBooks, editBook, deleteBook };
