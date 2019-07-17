@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint 'src/'",
     "test": "mocha tests/index.js",
     "start": "nodemon src/app.js"
   },
@@ -17,6 +18,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
     "faker": "^4.1.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",

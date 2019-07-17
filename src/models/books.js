@@ -31,7 +31,7 @@ Books.init({
 }, {
         sequelize,
         modelName: 'books',
-    })
+    });
 
 function createBook(name, author, year) {
     // Books.sync({ force: true }).then(() => {
@@ -46,7 +46,7 @@ function createBook(name, author, year) {
 }
 
 function readBooks() {
-    return Books.findAll().then(books => JSON.stringify(books, null, 4))
+    return Books.findAll().then(books => JSON.stringify(books, null, 4));
 }
 
 function editBook(idNumber, name, author, year) {
@@ -61,8 +61,8 @@ function deleteBook(id) {
 
 function changeStatus(id, status) {
     return Books.update({status}, { where: { id: id } }).then(() => {
-        return { update: true }
-    })
+        return { update: true };
+    });
 }
 
 function readStatus(id) {

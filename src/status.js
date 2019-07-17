@@ -20,7 +20,7 @@ function codeToStatus(code) {
 
     switch (code) {
         case 1:
-            status = 'DISPONIVEL'
+            status = 'DISPONIVEL';
             break;
         case 2:
             status = 'EMPRESTADO';
