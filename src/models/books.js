@@ -44,7 +44,9 @@ function readBooks() {
 }
 
 function editBook(idNumber, name, author, year) {
-    return Books.update({ name, author, year}, { where: { id: idNumber} }).then(() => {});
+    return Books.update({ name, author, year}, { where: { id: idNumber} }).then(() => {
+        return { update: true };
+    });
 }
 
 function deleteBook(id) {
