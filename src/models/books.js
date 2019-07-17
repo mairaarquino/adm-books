@@ -23,6 +23,10 @@ Books.init({
     year: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    status: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
     }
 }, {
         sequelize,
@@ -30,13 +34,15 @@ Books.init({
     })
 
 function createBook(name, author, year) {
-    return Books.create({
-        name,
-        author,
-        year,
-    }).then(book => {
-        return { created: true };
-    }).catch(err => console.log(err));
+    // Books.sync({ force: true }).then(() => {
+        return Books.create({
+            name,
+            author,
+            year,
+        }).then(book => {
+            return { created: true };
+        }).catch(err => console.log(err));
+    // })
 }
 
 function readBooks() {
@@ -53,4 +59,21 @@ function deleteBook(id) {
     return Books.destroy({ where: { id: id } });
 }
 
-module.exports = { createBook, readBooks, editBook, deleteBook };
+function changeStatus(id, status) {
+    return Books.update({status}, { where: { id: id } }).then(() => {
+        return { update: true }
+    })
+}
+
+function readStatus(id) {
+    return Books.findOne({ where: { id: id } }).then(book => JSON.stringify(book, null, 2));
+}
+
+module.exports = { 
+    createBook, 
+    readBooks, 
+    editBook, 
+    deleteBook, 
+    changeStatus,
+    readStatus
+};
