@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
 
-const sequelize = require('../db');
+const sequelize = require('../config/db');
 
 class Books extends Model {}
 

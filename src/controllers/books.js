@@ -1,5 +1,5 @@
 const books = require('../models/books');
-const handler_status = require('../status');
+const handler_status = require('./status');
 
 async function createBook(req, res) {
     const name = req.headers.name;
@@ -10,9 +10,9 @@ async function createBook(req, res) {
 }
 
 async function readBooks(req, res) {
-    const books_response = JSON.parse(await books.readBooks());
+    const books_response = await books.readBooks();
 
-    res.status(200).send(books_response[0]);
+    res.status(200).send(books_response);
 }
 
 async function editBook(req, res) {
@@ -56,11 +56,11 @@ async function readStatus(req, res) {
     res.status(200).send(final_book);
 }
 
-module.exports = { 
-    createBook, 
-    readBooks, 
-    editBook, 
-    deleteBook, 
-    changeStatus, 
+module.exports = {
+    createBook,
+    readBooks,
+    editBook,
+    deleteBook,
+    changeStatus,
     readStatus
 };
