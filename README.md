@@ -3,11 +3,11 @@ An API for library control
 ## Installation
 
 ```bash
-docker-compose up
+$ docker-compose up
 
-npm install #install dependencies
+$ npm install #install dependencies
 
-npm start # start the server
+$ npm start # start the server
 
-npm test # run the tests
+$ npm test # run the tests
 ```

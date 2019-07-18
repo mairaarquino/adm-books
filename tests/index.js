@@ -3,7 +3,6 @@ const assert = require('chai').assert;
 const fixtureBook = require('./book-fixture');
 const books = require('../src/models/books');
 
-
 describe.only('Testing Crud', function() {
     it('should create a book', async function () {
         const { name, author, year } = fixtureBook;
