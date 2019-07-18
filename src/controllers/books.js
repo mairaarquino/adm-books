@@ -10,7 +10,9 @@ async function createBook(req, res) {
 }
 
 async function readBooks(req, res) {
-    res.status(200).send(await books.readBooks());
+    const books_response = JSON.parse(await books.readBooks());
+
+    res.status(200).send(books_response[0]);
 }
 
 async function editBook(req, res) {
@@ -32,7 +34,9 @@ async function changeStatus(req, res) {
     const id = req.query.id;
     const status = req.headers.status;
 
-    res.sendStatus(200).send(await books.changeStatus(id, readStatus(status)));
+    const book = JSON.parse(await books.changeStatus(id, readStatus(status)));
+
+    res.sendStatus(200).send(book);
 }
 
 async function readStatus(req, res) {
