@@ -1,40 +1,6 @@
 const statuses = require('../models/statuses');
 const books = require('../models/books');
 
-function statusToCode(status) {
-    var statusCode = 0;
-
-    switch (status) {
-        case 'DISPONIVEL':
-            statusCode = 1;
-            break;
-        case 'EMPRESTADO':
-            statusCode = 2;
-            break;
-        default:
-            break;
-    }
-
-    return statusCode;
-}
-
-function codeToStatus(code) {
-    var status = "";
-
-    switch (code) {
-        case 1:
-            status = 'DISPONIVEL';
-            break;
-        case 2:
-            status = 'EMPRESTADO';
-            break;
-        default:
-            break;
-    }
-
-    return status;
-}
-
 async function createStatus(req, res) {
     const status = req.query.status;
 
@@ -53,7 +19,7 @@ async function searchAllBooksByDescription(req, res) {
         id,
         status: description,
         books,
-    }
+    };
     res.status(200).send(final_response);   
 }
 

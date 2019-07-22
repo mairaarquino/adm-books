@@ -34,18 +34,23 @@ Books.init({
         modelName: 'books',
     });
 
+    Books.belongsTo(statuses.Statuses);
+
 function createBook(name, author, year) {
     // Books.sync({ force: true }).then(() => {
         return Books.create({
             name,
             author,
             year,
-        }).then(book => { { created: true } }).catch(err => console.log(err));
+        }).then(book => true).catch(err => console.log(err));
     // });
 }
 
 function readBooks() {
-    return Books.findAll().then(books => JSON.stringify(books, null, 4));
+    return Books.findAll({ include: [{
+        attributes: ['description'],
+        model: statuses.Statuses,
+    }]}).then(books => JSON.stringify(books, null, 4));
 }
 
 function editBook(idNumber, name, author, year) {
@@ -53,7 +58,7 @@ function editBook(idNumber, name, author, year) {
 }
 
 function deleteBook(id) {
-    return Books.destroy({ where: { id: id } });
+    return Books.destroy({ where: { id: id } }).then(() => true);
 }
 
 async function changeBookStatusByDescription(id_livro, desc_status) {
@@ -63,9 +68,9 @@ async function changeBookStatusByDescription(id_livro, desc_status) {
     return Books.update({ statusId }, { where: { id: id_livro }}).then(() => true);
 }
 
-// function readStatus(id) {
-//     return Books.findAll({ status: id}).then(book => JSON.stringify(book, null, 2));
-// }
+function readStatus(id) {
+    return Books.findAll({ status: id}).then(book => JSON.stringify(book, null, 2));
+}
 
 module.exports = { 
     Books,
@@ -73,6 +78,6 @@ module.exports = {
     readBooks, 
     editBook, 
     deleteBook, 
-    changeBookStatusByDescription
-    // readStatus
+    changeBookStatusByDescription,
+    readStatus
 };

@@ -13,4 +13,4 @@ module.exports = app => {
 
     app.get("/statusDesc", (req, res) => statuses.searchAllBooksByDescription(req, res));
     app.post("/createStatus", (req, res) => statuses.createStatus(req, res));
-}
+};

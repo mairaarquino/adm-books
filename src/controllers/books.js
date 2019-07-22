@@ -6,13 +6,14 @@ async function createBook(req, res) {
     const author = req.headers.author;
     const year = req.headers.year;
 
-    res.status(200).send(await books.createBook(name, author, year));
+    const response = JSON.parse(await books.createBook(name, author, year));
+    res.status(200).send({ created: response});
 }
 
 async function readBooks(req, res) {
     const books_response = await books.readBooks();
 
-    res.status(200).send(books_response);
+    res.status(200).send(JSON.parse(books_response));
 }
 
 async function editBook(req, res) {
@@ -28,7 +29,8 @@ async function editBook(req, res) {
 async function deleteBook(req, res) {
     const id = req.query.id;
 
-    res.sendStatus(200).send(await books.deleteBook(id));
+    const response = JSON.parse(await books.deleteBook(id));
+    res.sendStatus(200).send({ deleted: response});
 }
 
 async function changeStatus(req, res) {

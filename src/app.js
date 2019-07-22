@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 
 consign()
   .include('src/routes.js')
-  .into(app)
+  .into(app);
 
 app.listen(config.PORT, function (){
     console.log(`Server listening on port: ${config.PORT}`);
