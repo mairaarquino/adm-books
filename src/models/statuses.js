@@ -22,12 +22,10 @@ Statuses.init({
         modelName: 'statuses',
     });
 
-    Statuses.hasMany(books.Books)
 
 function createStatus(status) {
     // Statuses.sync({ force: true }).then(() => {
-
-    return Statuses.create({ description: status }).then(status => { { created: true } }).catch(err => console.log(err));
+      return Statuses.create({ description: status }).then(status => { { created: true } }).catch(err => console.log(err));
     // });
 }
 

@@ -9,7 +9,7 @@ module.exports = app => {
     app.delete("/delete", (req, res) => books.deleteBook(req, res));
 
     app.get("/status", (req, res) => books.readStatus(req, res));
-    app.patch("/status", (req, res) => books.changeStatus(req, res));
+    app.patch("/status", (req, res) => statuses.changeStatusByDescription(req, res));
 
     app.get("/statusDesc", (req, res) => statuses.searchAllBooksByDescription(req, res));
     app.post("/createStatus", (req, res) => statuses.createStatus(req, res));

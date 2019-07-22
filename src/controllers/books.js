@@ -21,7 +21,8 @@ async function editBook(req, res) {
     const author = req.headers.author;
     const year = req.headers.year;
 
-    res.status(200).send(await books.editBook(id, name, author, year));
+    const response = await books.editBook(id, name, author, year);
+    res.status(200).send({ update: response});
 }
 
 async function deleteBook(req, res) {

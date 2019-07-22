@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
+const statuses = require('../models/statuses');
 
 const sequelize = require('../config/db');
 
@@ -48,19 +49,18 @@ function readBooks() {
 }
 
 function editBook(idNumber, name, author, year) {
-    return Books.update({ name, author, year}, { where: { id: idNumber} }).then(() => {
-        return { update: true };
-    });
+    return Books.update({ name, author, year}, { where: { id: idNumber} }).then(() => true);
 }
 
 function deleteBook(id) {
     return Books.destroy({ where: { id: id } });
 }
 
-function changeStatus(id, status) {
-    return Books.update({status}, { where: { id: id } }).then(() => {
-        return { update: true };
-    });
+async function changeBookStatusByDescription(id_livro, desc_status) {
+    const statusId = await statuses.Statuses.findOne({attributes: ['id'],
+     where: { description: desc_status }}).then(status => JSON.parse(status.id));
+
+    return Books.update({ statusId }, { where: { id: id_livro }}).then(() => true);
 }
 
 // function readStatus(id) {
@@ -73,6 +73,6 @@ module.exports = {
     readBooks, 
     editBook, 
     deleteBook, 
-    changeStatus,
+    changeBookStatusByDescription
     // readStatus
 };

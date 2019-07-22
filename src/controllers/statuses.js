@@ -1,4 +1,5 @@
 const statuses = require('../models/statuses');
+const books = require('../models/books');
 
 function statusToCode(status) {
     var statusCode = 0;
@@ -56,9 +57,18 @@ async function searchAllBooksByDescription(req, res) {
     res.status(200).send(final_response);   
 }
 
+async function changeStatusByDescription(req, res) {
+    const id_livro = req.headers.id;
+    const desc_status = req.headers.desc;
+
+    const response = await books.changeBookStatusByDescription(id_livro, desc_status);
+    res.status(200).send({ update: response});
+}
+
 module.exports = { 
     statusToCode, 
     codeToStatus,
     createStatus,
-    searchAllBooksByDescription
+    searchAllBooksByDescription,
+    changeStatusByDescription
 };
