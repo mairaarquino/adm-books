@@ -1,4 +1,5 @@
 const books = require('./controllers/books');
+const statuses = require('./controllers/statuses');
 
 module.exports = app => {
     app.get("/", (req, res) => books.readBooks(req, res));
@@ -9,4 +10,7 @@ module.exports = app => {
 
     app.get("/status", (req, res) => books.readStatus(req, res));
     app.patch("/status", (req, res) => books.changeStatus(req, res));
+
+    app.get("/statusDesc", (req, res) => statuses.searchAllBooksByDescription(req, res));
+    app.post("/createStatus", (req, res) => statuses.createStatus(req, res));
 }

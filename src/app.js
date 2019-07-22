@@ -1,8 +1,10 @@
 const express = require('express');
 const config = require('./config/');
 const consign = require('consign');
+var bodyParser = require('body-parser');
 
 var app = express();
+app.use(bodyParser.json());
 
 consign()
   .include('src/routes.js')
