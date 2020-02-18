@@ -26,6 +26,6 @@
     "faker": "^4.1.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
-    "sequelize": "^5.10.1"
+    "sequelize": "^5.15.1"
   }
 }
